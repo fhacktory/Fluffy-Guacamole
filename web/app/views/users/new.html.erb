@@ -1,0 +1,8 @@
+<h1> Create a Drunkard account </h1>
+<div class="row">
+<%= form_for(@user) do |f| %>
+	<%= f.text_field :name, :placeholder => "Name" %><br/>
+	<%= f.text_field :height, :placeholder => "Height (in cm)" %><br/>
+	<%= f.text_field :weight, :placeholder => "Weight (in kg)" %><br/>
+	<%= f.submit "Create my account", class: "btn.submit" %><br/>
+<% end %>

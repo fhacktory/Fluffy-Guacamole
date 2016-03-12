@@ -1,12 +1,15 @@
 <h1> Add a drink </h1>
 <div class="row">
 <%= form_for(@drink) do |f| %>
-	<%= f.label :name %> Name :
+	<%= f.label :name %>
 	<%= f.select(:name, options_for_select([
 				['Beer', "beer"], 
 				['Wine', "wine"],
+				['Shot', "shot"],
 				['Other', "other"]], 
 				@drink)) %><br/>
-    <%= f.select(:name, :name, [['Beer', 'Beer'], ['Wine', 'Wine'], ['Other', 'Other']]) %>
+				
+	<%= f.text_field :proof, :placeholder => "Proof" %><br/>
+	<%= f.text_field :quantity, :placeholder => "Quantity (in cl)" %><br/>
 <% end %>
-
+	

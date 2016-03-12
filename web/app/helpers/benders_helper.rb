@@ -1,2 +1,2 @@
-module BenderHelper
+module BendersHelper
 end
