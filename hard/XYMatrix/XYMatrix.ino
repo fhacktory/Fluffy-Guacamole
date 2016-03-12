@@ -71,7 +71,7 @@ const int ledPin =  13;      // the number of the LED pin
 
 // variables will change:
 int buttonState = 0;         // variable for reading the tilt switch status
-unsigned int time=0;
+unsigned long int time=0;
 unsigned int previousFrame=0;
 
 // This function will return the right 'led index number' for 
@@ -188,6 +188,7 @@ void loop()
       Serial.print(" Time : ");
       Serial.println(millis()-time,DEC);
       time=millis();
+      i=0;
   } 
   
   if (buttonState == HIGH) { 
@@ -206,6 +207,8 @@ void loop()
   else {
     // turn LED off:
     digitalWrite(ledPin, LOW);
+    FastLED.clear();
+    FastLED.show();
   }
   //Update previous state
   prevState = currState;
