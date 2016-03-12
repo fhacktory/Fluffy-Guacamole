@@ -1,0 +1,178 @@
+ <html lang="fr-FR" prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
+   <head>
+	   	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	   	<meta charset="utf-8">
+	   	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+	   	<!-- BASIC INFO -->
+	   	<title>Fluffy app</title>
+	   	<meta name="author" content="fHacktory">
+	   	<meta name="keywords" content="social drinking, immoral, alcool, bourré">
+
+	   	<!-- FAVICONS -->
+	   	<link rel="icon" href="img/flavicon.ico">
+	   	<link rel="apple-touch-icon" href="img/flavicon.ico">
+
+		<!-- CSS
+		================================= -->
+		<link rel="stylesheet" href="drunk_man.css">
+		
+		
+		<!-- GOOGLE FONT
+		================================= -->
+		<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:300|Open+Sans:300|Raleway:900' rel='stylesheet' type='text/css'>
+
+			<!-- **OPEN GRAPH** -->
+		<link rel="canonical" href="localhost:3000" />
+		<meta property="og:locale" content="fr_FR" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Fluffy App" />
+		<meta property="og:url" content="localhost:3000" />
+		<meta property="og:site_name" content="fHacktory"/>
+		<meta property="og:description" content="La webapp Flaffy" />
+		<meta property="og:image" content="localhost:3000/app/assets/images/logo.png" />
+		<meta property="og:image:width" content="300" />
+		<meta property="og:image:height" content="374" />
+	</head>
+
+<style>
+	#mapid {
+	height: 400px;
+	width: 100%;
+}
+</style>
+
+<script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
+<script src="d3.min.js" charset="utf-8"></script>
+
+	<body>
+		<div id="page">
+
+		<div id="container">
+			<h1>Flaffy App</h1>
+			<p class="texte">Bonjour Camille, grosse soirée aujourd'hui !</p>
+			<section id="carteSituation">
+				<h3>Carte</h3>
+				 <div id="mapid"></div>
+
+			</section> <!-- #map -->
+
+			<section id="stat">
+				<h3>Stat de la soirée</h3>
+				<table>
+					<tr>
+						<td><span>Nbre gorgés</span>11</td>
+						<td><span>Rang</span>7e</td>
+					</tr>
+					<tr>
+						<td><span>Conso actuelle</span>Leff</td>
+						<td></td>
+					</tr>
+				</table>
+			</section> <!-- #stat -->
+
+			<section id="graph">
+				<h3>Graph</h3>
+				
+				
+			</section><!-- #graph -->
+
+		</div> <!-- #container -->
+	</div>
+
+		<footer>
+			
+		</footer>
+
+<script>
+	// Création de la carte
+	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+	//L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/page.html?access_token=pk.eyJ1IjoicmljaHdvb2QiLCJhIjoiY2lscGJwcjZlMDAzbnk2bTAydDk4bzQ5ayJ9.mkDGtvQvg1SKYi0xanRBXQ#5/44.887/9.646', {
+		L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/page.html?access_token=pk.eyJ1IjoicmljaHdvb2QiLCJhIjoiY2lscGJwcjZlMDAzbnk2bTAydDk4bzQ5ayJ9.mkDGtvQvg1SKYi0xanRBXQ', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoicmljaHdvb2QiLCJhIjoiY2lscGJwcjZlMDAzbnk2bTAydDk4bzQ5ayJ9.mkDGtvQvg1SKYi0xanRBXQ'
+}).addTo(mymap);
+
+var marker = L.marker([51.5, -0.09]).addTo(mymap);
+var circle = L.circle([51.508, -0.11], 500, {
+color: 'red',
+fillColor: '#f03',
+fillOpacity: 0.5
+}).addTo(mymap);
+
+marker.bindPopup("<b>Vous etes ici !</b><br>La Tour du Web.").openPopup();
+circle.bindPopup("I am a circle.");
+
+// mymap.dragging.disable();
+// mymap.touchZoom.disable();
+// mymap.doubleClickZoom.disable();
+// mymap.scrollWheelZoom.disable();
+// mymap.keyboard.disable();
+</script>
+
+<script>
+	// Generate a Bates distribution of 10 random variables.
+	var values = d3.range(1000).map(d3.random.bates(10));
+	// A formatter for counts.
+	var formatCount = d3.format(",.0f");
+
+	var margin = {top: 10, right: 30, bottom: 30, left: 30},
+	    // width = 960 - margin.left - margin.right,
+	    // height = 500 - margin.top - margin.bottom;
+	    width = window.innerWidth*0.92*0.96 - margin.left - margin.right - 24 ,
+	    height = 250 - margin.top - margin.bottom;
+
+	var x = d3.scale.linear()
+	    .domain([0, 1])
+	    .range([0, width]);
+
+	// Generate a histogram using twenty uniformly-spaced bins.
+	var data = d3.layout.histogram()
+	    .bins(x.ticks(10))
+	    (values);
+
+	var y = d3.scale.linear()
+	    .domain([0, d3.max(data, function(d) { return d.y; })])
+	    .range([height, 0]);
+
+	var xAxis = d3.svg.axis()
+	    .scale(x)
+	    .orient("bottom");
+
+	var svg = d3.select("#graph").append("svg")
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom)
+	  .append("g")
+	    //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	var bar = svg.selectAll(".bar")
+	    .data(data)
+	  .enter().append("g")
+	    .attr("class", "bar")
+	    .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; });
+
+	bar.append("rect")
+	    .attr("x", 1)
+	    .attr("width", x(data[0].dx) - 1)
+	    .attr("height", function(d) { return height - y(d.y); });
+
+	bar.append("text")
+	    .attr("dy", ".75em")
+	    .attr("y", 6)
+	    .attr("x", x(data[0].dx) / 2)
+	    .attr("text-anchor", "middle")
+	    .text(function(d) { return formatCount(d.y); });
+
+	svg.append("g")
+	    .attr("class", "x axis")
+	    .attr("transform", "translate(0," + height + ")")
+	    .call(xAxis);
+</script>
+	</body>
+</html>
+
