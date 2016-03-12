@@ -1,4 +1,4 @@
 class Bender < ApplicationRecord
   belongs_to :user
-  has_and_belongs_to_many :beverages
+  has_many :beverages through :glasses
 end
