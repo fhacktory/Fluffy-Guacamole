@@ -1,2 +1,0 @@
-class Beverage < ApplicationRecord
-end

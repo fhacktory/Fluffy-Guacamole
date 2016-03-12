@@ -1,0 +1,12 @@
+<h1> Add a drink </h1>
+<div class="row">
+<%= form_for(@drink) do |f| %>
+	<%= f.label :name %> Name :
+	<%= f.select(:name, options_for_select([
+				['Beer', "beer"], 
+				['Wine', "wine"],
+				['Other', "other"]], 
+				@drink)) %><br/>
+    <%= f.select(:name, :name, [['Beer', 'Beer'], ['Wine', 'Wine'], ['Other', 'Other']]) %>
+<% end %>
+
