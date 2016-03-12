@@ -171,18 +171,28 @@ uint16_t XYsafe( uint8_t x, uint8_t y)
 // Demo that USES "XY" follows code below
 unsigned int currentFrame=0;
 unsigned int frameDelay=150;
+unsigned int currState = 0;
+unsigned int prevState = 0;
 void loop()
 {
   static int i=0;
   
   buttonState = digitalRead(buttonPin);
 
+  //Update current state
+  currState = buttonState;
+  
+  if(prevState != currState)
+  {
+      Serial.print(buttonState,DEC);
+      Serial.print(" Time : ");
+      Serial.println(millis()-time,DEC);
+      time=millis();
+  } 
+  
   if (buttonState == HIGH) { 
     // turn LED on:    
     digitalWrite(ledPin, HIGH);
-    Serial.print(1,DEC);
-    Serial.print(" Time : ");
-    Serial.println(millis()-time,DEC);
     
     currentFrame=millis();
     if(currentFrame-previousFrame > frameDelay){
@@ -195,10 +205,10 @@ void loop()
   } 
   else {
     // turn LED off:
-    digitalWrite(ledPin, LOW); 
-    Serial.println(0,DEC);
-    time=millis();
+    digitalWrite(ledPin, LOW);
   }
+  //Update previous state
+  prevState = currState;
 }
 
 void displayImage(int imageIndex)
