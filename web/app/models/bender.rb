@@ -1,0 +1,2 @@
+class Bender < ApplicationRecord
+end
