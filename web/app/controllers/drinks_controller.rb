@@ -1,4 +1,4 @@
-class DrinkController < ApplicationController
+class DrinksController < ApplicationController
   def new 
     @drink = Drink.new
   end

@@ -1,0 +1,2 @@
+module BenderHelper
+end
