@@ -66,6 +66,13 @@ const bool    kMatrixSerpentineLayout = true;
 // in one row, and then backwards in the next row, and so on
 // is call "boustrophedon", meaning "as the ox plows."
 
+const int buttonPin = 2;     // the number of the tilt switch pin
+const int ledPin =  13;      // the number of the LED pin
+
+// variables will change:
+int buttonState = 0;         // variable for reading the tilt switch status
+unsigned int time=0;
+unsigned int previousFrame=0;
 
 // This function will return the right 'led index number' for 
 // a given set of X and Y coordinates on your matrix.  
@@ -162,13 +169,35 @@ uint16_t XYsafe( uint8_t x, uint8_t y)
 
 
 // Demo that USES "XY" follows code below
-
+unsigned int currentFrame=0;
+unsigned int frameDelay=150;
 void loop()
 {
-  for(int i=0;i<NBRIMG;i++){
-    displayImage(i);
-    FastLED.show();
-    FastLED.delay(150);
+  static int i=0;
+  
+  buttonState = digitalRead(buttonPin);
+
+  if (buttonState == HIGH) { 
+    // turn LED on:    
+    digitalWrite(ledPin, HIGH);
+    Serial.print(1,DEC);
+    Serial.print(" Time : ");
+    Serial.println(millis()-time,DEC);
+    
+    currentFrame=millis();
+    if(currentFrame-previousFrame > frameDelay){
+      previousFrame=currentFrame;
+      displayImage(i);
+      FastLED.show();
+      i++;
+      if(i==NBRIMG) i=0;
+    }
+  } 
+  else {
+    // turn LED off:
+    digitalWrite(ledPin, LOW); 
+    Serial.println(0,DEC);
+    time=millis();
   }
 }
 
@@ -189,5 +218,10 @@ void displayImage(int imageIndex)
 void setup() {
   FastLED.addLeds<CHIPSET, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection(TypicalSMD5050);
   FastLED.setBrightness( BRIGHTNESS );
+  // initialize the LED pin as an output:
+  pinMode(ledPin, OUTPUT);      
+  // initialize the tilt switch pin as an input:
+  pinMode(buttonPin, INPUT);
+  Serial.begin(115200);   
 }
 
