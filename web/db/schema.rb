@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312164316) do
+ActiveRecord::Schema.define(version: 20160312173702) do
 
   create_table "benders", force: :cascade do |t|
     t.datetime "started_at"
@@ -20,23 +20,16 @@ ActiveRecord::Schema.define(version: 20160312164316) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "beverages", force: :cascade do |t|
-    t.integer  "proof"
+  create_table "drinks", force: :cascade do |t|
+    t.integer  "quantity"
     t.string   "name"
+    t.integer  "proof"
+    t.integer  "bender_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "glasses", force: :cascade do |t|
-    t.integer  "quantity"
-    t.integer  "beverage_id"
-    t.integer  "bender_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "glasses", ["bender_id"], name: "index_glasses_on_bender_id"
-  add_index "glasses", ["beverage_id"], name: "index_glasses_on_beverage_id"
+  add_index "drinks", ["bender_id"], name: "index_drinks_on_bender_id"
 
   create_table "positions", force: :cascade do |t|
     t.string   "longitude"
