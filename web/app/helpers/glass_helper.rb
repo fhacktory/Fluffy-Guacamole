@@ -1,0 +1,2 @@
+module GlassHelper
+end
