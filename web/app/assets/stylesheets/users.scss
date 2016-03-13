@@ -1,3 +1,110 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+html{
+	margin: 0;
+	padding: 0;
+}
+body{
+	background: url('bg-blur.jpg') 50% 50% / cover no-repeat;
+	font-family: 'Roboto Slab', serif;
+	color: #e2e2e2;
+    padding: 6%;
+    margin: 0;
+}
+h1{
+	font-family: 'Raleway', sans-serif;
+	color: #28D8B2;
+	margin-top: 0;
+}
+h3{
+	border-bottom: 1px solid #B8D0E8;
+	color:#B8D0E8;
+	font-size: 12px;
+	font-family: 'Open Sans', sans-serif;
+}
+.texte{
+	font-size: 11px;
+	color: #445b72;
+}
+#page{
+	background-color: rgba(0,0,0,0.15);
+}
+#container{
+    padding: 30px 4%;
+    width: 92%;
+    max-width: 1024px;
+    margin: 0 auto;
+    /*display: table;*/
+}
+section{
+	padding:12px;
+	margin-bottom: 25px;
+	box-shadow: 2px 5px 22px rgba(0, 0, 0, 0.36);
+	/*background-color: #5D6A73;*/
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5b6775+0,807b81+100 */
+	background: #5b6775; /* Old browsers */
+	background: -moz-linear-gradient(top,  #5b6775 0%, #807b81 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #5b6775 0%,#807b81 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #5b6775 0%,#807b81 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5b6775', endColorstr='#807b81',GradientType=0 ); /* IE6-9 */
+}
+
+#container section#carteSituation, #container section#stat{
+	display: block;
+}
+
+#container section#stat table{
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 12px;
+}
+
+#container section#stat table td{
+	width: 50%;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 22px;
+}
+
+#container section#stat table td span{
+	font-family: lato, 'Century Gothic', sans-serif;
+	display: block;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+rect{
+	fill:#51B8F2;
+}
+
+.buttonInscription{
+	background-color: #cfcfcf;
+	padding:8px 12px;
+	color: #fff;
+	text-decoration: none;
+	font-family: 'Open Sans', sans-serif;
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 800px) {
+	#container section#carteSituation, #container section#stat{
+		/*display: table-cell;*/
+	}
+}
+@media screen and (max-width: 640px) {
+	body{
+		padding: 3%;
+	}
+	#container{
+	    width: 90%;
+    	margin: 0 auto;
+    	padding-top:10px;
+	}
+}

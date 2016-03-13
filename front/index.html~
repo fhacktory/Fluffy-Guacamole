@@ -89,30 +89,30 @@
 
 <script>
 	// Création de la carte
-	var mymap = L.map('mapid').setView([45.74, 4.83], 13);
-	// L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/page.html?access_token=pk.eyJ1IjoicmljaHdvb2QiLCJhIjoiY2lscGJwcjZlMDAzbnk2bTAydDk4bzQ5ayJ9.mkDGtvQvg1SKYi0xanRBXQ', {
-	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+	//L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/page.html?access_token=pk.eyJ1IjoicmljaHdvb2QiLCJhIjoiY2lscGJwcjZlMDAzbnk2bTAydDk4bzQ5ayJ9.mkDGtvQvg1SKYi0xanRBXQ#5/44.887/9.646', {
+		L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/page.html?access_token=pk.eyJ1IjoicmljaHdvb2QiLCJhIjoiY2lscGJwcjZlMDAzbnk2bTAydDk4bzQ5ayJ9.mkDGtvQvg1SKYi0xanRBXQ', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18,
-    id: 'mapbox.dc-bright',
+    id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoicmljaHdvb2QiLCJhIjoiY2lscGJwcjZlMDAzbnk2bTAydDk4bzQ5ayJ9.mkDGtvQvg1SKYi0xanRBXQ'
 }).addTo(mymap);
 
-var marker = L.marker([45.7460, 4.834]).addTo(mymap);
-// var circle = L.circle([51.508, -0.11], 500, {
-// color: 'red',
-// fillColor: '#f03',
-// fillOpacity: 0.5
-// }).addTo(mymap);
+var marker = L.marker([51.5, -0.09]).addTo(mymap);
+var circle = L.circle([51.508, -0.11], 500, {
+color: 'red',
+fillColor: '#f03',
+fillOpacity: 0.5
+}).addTo(mymap);
 
 marker.bindPopup("<b>Vous etes ici !</b><br>La Tour du Web.").openPopup();
 circle.bindPopup("I am a circle.");
 
-mymap.dragging.disable();
-mymap.touchZoom.disable();
-mymap.doubleClickZoom.disable();
-mymap.scrollWheelZoom.disable();
-mymap.keyboard.disable();
+// mymap.dragging.disable();
+// mymap.touchZoom.disable();
+// mymap.doubleClickZoom.disable();
+// mymap.scrollWheelZoom.disable();
+// mymap.keyboard.disable();
 </script>
 
 <script>
