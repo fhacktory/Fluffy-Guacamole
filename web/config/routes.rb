@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :positions
   resources :sessions
-  root "users#index"
+  root "home#index"
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   resources :users
