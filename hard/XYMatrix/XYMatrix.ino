@@ -74,6 +74,14 @@ int buttonState = 0;         // variable for reading the tilt switch status
 unsigned long int time=0;
 unsigned int previousFrame=0;
 
+// Demo that USES "XY" follows code below
+unsigned int currentFrame=0;
+unsigned int frameDelay=150;
+unsigned int currState = 0;
+unsigned int prevState = 0;
+
+unsigned int tiltCounter=0;
+
 // This function will return the right 'led index number' for 
 // a given set of X and Y coordinates on your matrix.  
 // IT DOES NOT CHECK THE COORDINATE BOUNDARIES.  
@@ -167,12 +175,6 @@ uint16_t XYsafe( uint8_t x, uint8_t y)
   return XY(x,y);
 }
 
-
-// Demo that USES "XY" follows code below
-unsigned int currentFrame=0;
-unsigned int frameDelay=150;
-unsigned int currState = 0;
-unsigned int prevState = 0;
 void loop()
 {
   static int i=0;
@@ -184,11 +186,13 @@ void loop()
   
   if(prevState != currState)
   {
-      Serial.print(buttonState,DEC);
+    if(millis()-time > 500){
+      tiltCounter++;
+      Serial.print(tiltCounter,DEC);
       Serial.print(" Time : ");
       Serial.println(millis()-time,DEC);
-      time=millis();
       i=0;
+    }
   } 
   
   if (buttonState == HIGH) { 
@@ -209,6 +213,7 @@ void loop()
     digitalWrite(ledPin, LOW);
     FastLED.clear();
     FastLED.show();
+    time=millis();
   }
   //Update previous state
   prevState = currState;
