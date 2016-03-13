@@ -1,4 +1,4 @@
-<%= "Beuverie de #{ @bender } "  %>
+<%= "Beuverie de #{ @bender }  - Beuverie en cours : #{current_bender}" %>
 
 <h1> Your Drinks </h1>
 <% if @bender_drinks %>
@@ -8,5 +8,5 @@
 		<p><%= drink.quantity %></p>
 	<% end %>
 	<% else %>
-	<p class="empty">Pas de drink!</p>
+	<p class="empty">commence une beuverie d'abord&nbsp;!</p>
 <% end %>

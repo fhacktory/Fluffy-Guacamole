@@ -1,17 +1,17 @@
 <h1> Add a drink </h1>
+Beuverie <%= current_bender.id %> en cours depuis : <%= current_bender.started_at %>
 <div class="row">
 <%= form_for(@drink) do |f| %>
 	<%= f.label :name %>
 	<%= f.select(:name, options_for_select([
-				['Beer', "beer"], 
+				['Beer', "beer"],
 				['Wine', "wine"],
 				['Shot', "shot"],
-				['Other', "other"]], 
+				['Other', "other"]],
 				@drink)) %><br/>
-				
+
 	<%= f.text_field :proof, :placeholder => "Proof" %><br/>
 	<%= f.text_field :quantity, :placeholder => "Quantity (in cl)" %><br/>
 
 	<%= f.submit "Add a Drink", class: "btn.submit" %><br/>
 <% end %>
-	
