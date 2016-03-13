@@ -5,6 +5,7 @@
 html{
 	margin: 0;
 	padding: 0;
+	height:100%;
 }
 body{
 	background: url('bg-blur.jpg') 50% 50% / cover no-repeat;
@@ -15,12 +16,12 @@ body{
 }
 h1{
 	font-family: 'Raleway', sans-serif;
-	color: #28D8B2;
+	color: #efefed;
 	margin-top: 0;
 }
 h3{
-	border-bottom: 1px solid #B8D0E8;
-	color:#B8D0E8;
+	border-bottom: 1px solid #666;
+	color:#666;
 	font-size: 12px;
 	font-family: 'Open Sans', sans-serif;
 }
@@ -85,6 +86,11 @@ rect{
 	color: #fff;
 	text-decoration: none;
 	font-family: 'Open Sans', sans-serif;
+	border:0;
+}
+
+.marges{
+	margin:40px 0;
 }
 
 
