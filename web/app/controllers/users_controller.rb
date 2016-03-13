@@ -4,13 +4,14 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def new 
+  def new
     @user = User.new
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
+      log_in(@user)
       redirect_to @user
     else
       render 'new'
@@ -19,7 +20,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @user_benders = Bender.where(user_id: current_user.id)
+    if current_user
+      @user_benders = Bender.where(user_id: current_user.id)
+    end
   end
 
   def edit
@@ -28,7 +31,7 @@ class UsersController < ApplicationController
   def destroy
   end
 
-  private 
+  private
     def user_params
       params.require(:user).permit(:name, :height, :weight)
     end
