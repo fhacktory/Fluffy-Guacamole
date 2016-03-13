@@ -1,3 +1,2 @@
-class Position <ApplicationRecord
-	belongs_to :user
+class Position < ApplicationRecord
 end
