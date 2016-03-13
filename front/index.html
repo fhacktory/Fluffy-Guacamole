@@ -118,19 +118,23 @@ var marker = L.marker([45.7460, 4.834]).addTo(mymap);
 var heat = L.heatLayer([
     [45.7460, 4.834, 0.8], // lat, lng, intensity
     [45.74, 4.833, 0.5],
-    [45.7462, 4.830, 1],
+    [45.7462, 4.830, 0.3],
     [45.7460, 4.833, 0.7],
-    [45.7459, 4.834, 0.7],
-    [45.7457, 4.830, 0.7],
-    [45.7456, 4.8334, 0.7],
-    [45.7459, 4.834, 0.7],
-    [45.742, 4.830, 0.9],
-], {radius: 60}, {0.2: 'blue', 0.45: 'lime', 0.65: 'red'}).addTo(mymap);
+    [45.7459, 4.836, 0.4],
+    [45.7457, 4.830, 0.2],
+    [45.7456, 4.8334, 0.8],
+    [45.748, 4.834, 0.7],
+    [45.742, 4.830, 0.6],
+    [45.748175, 4.836531, 0.9],
+    [45.74818, 4.836527, 0.9],
+    [45.746249, 4.838683, 0.75],
+    [45.746249, 4.838683, 0.75]
+], {radius: 100}, {0.2: 'blue', 0.45: 'lime', 0.65: 'red'}, {blur: 25}).addTo(mymap);
 
 marker.bindPopup("<b>Vous etes ici !</b><br>La Tour du Web.").openPopup();
 circle.bindPopup("I am a circle.");
 
-mymap.dragging.disable();
+// mymap.dragging.disable();
 mymap.touchZoom.disable();
 mymap.doubleClickZoom.disable();
 mymap.scrollWheelZoom.disable();
@@ -185,7 +189,7 @@ mymap.keyboard.disable();
 	    .attr("height", function(d) { return height - y(d.y); });
 
 	bar.append("text")
-	    .attr("dy", ".75em")
+	    .attr("dy", ".71em")
 	    .attr("y", 6)
 	    .attr("x", x(data[0].dx) / 2)
 	    .attr("text-anchor", "middle")

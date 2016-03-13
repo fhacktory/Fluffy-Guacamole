@@ -74,6 +74,10 @@ section{
 rect{
 	fill:#51B8F2;
 }
+text{
+	font-size: 12px;
+	fill:#fff;
+}
 
 
 @media screen and (max-width: 800px) {
