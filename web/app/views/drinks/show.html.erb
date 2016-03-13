@@ -1,0 +1,9 @@
+<%= "Beuverie de #{ @bender } "  %>
+
+<h1> Your Drinks </h1>
+
+<% @bender_drinks.each do |drink| %>
+	<p><%= drink.name %><br/>
+	<%= drink.proof %><br/>
+	<%= drink.quantity %></p>
+<% end %>
