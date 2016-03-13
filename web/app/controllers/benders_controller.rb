@@ -6,6 +6,7 @@ class BendersController < ApplicationController
   def create
     @bender = Bender.new()
     @bender.started_at = Time.now
+    @bender.user_id = current_user.id
     if @bender.save!
       redirect_to @bender
     else
