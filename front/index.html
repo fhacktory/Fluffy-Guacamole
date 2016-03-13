@@ -47,8 +47,9 @@
 <script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
 <script src="d3.min.js" charset="utf-8"></script>
+<script src="leaflet-heat.js"></script>
 
-	<body>
+	<body onload="checkFileAPI();">
 		<div id="page">
 
 		<div id="container">
@@ -80,6 +81,16 @@
 				
 			</section><!-- #graph -->
 
+			<section>    
+		        <input type="file" onchange='readText(this)' />
+		        <br/>
+		        <hr/>   
+		        <h3>Contents of the Text file:</h3>
+		        <div id="main">
+		            ...
+		        </div>
+		    </section>
+
 		</div> <!-- #container -->
 	</div>
 
@@ -104,6 +115,18 @@ var marker = L.marker([45.7460, 4.834]).addTo(mymap);
 // fillOpacity: 0.5
 // }).addTo(mymap);
 
+var heat = L.heatLayer([
+    [45.7460, 4.834, 0.8], // lat, lng, intensity
+    [45.74, 4.833, 0.5],
+    [45.7462, 4.830, 1],
+    [45.7460, 4.833, 0.7],
+    [45.7459, 4.834, 0.7],
+    [45.7457, 4.830, 0.7],
+    [45.7456, 4.8334, 0.7],
+    [45.7459, 4.834, 0.7],
+    [45.742, 4.830, 0.9],
+], {radius: 60}, {0.2: 'blue', 0.45: 'lime', 0.65: 'red'}).addTo(mymap);
+
 marker.bindPopup("<b>Vous etes ici !</b><br>La Tour du Web.").openPopup();
 circle.bindPopup("I am a circle.");
 
@@ -112,6 +135,7 @@ mymap.touchZoom.disable();
 mymap.doubleClickZoom.disable();
 mymap.scrollWheelZoom.disable();
 mymap.keyboard.disable();
+
 </script>
 
 <script>
@@ -171,6 +195,63 @@ mymap.keyboard.disable();
 	    .attr("class", "x axis")
 	    .attr("transform", "translate(0," + height + ")")
 	    .call(xAxis);
+</script>
+
+<script>
+   var reader; //GLOBAL File Reader object for demo purpose only
+
+    /**
+     * Check for the various File API support.
+     */
+    function checkFileAPI() {
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+            reader = new FileReader();
+            return true; 
+        } else {
+            alert('The File APIs are not fully supported by your browser. Fallback required.');
+            return false;
+        }
+    }
+	    /**
+     * read text input
+     */
+    function readText(filePath) {
+        var output = ""; //placeholder for text output
+        if(filePath.files && filePath.files[0]) {           
+            reader.onload = function (e) {
+                output = e.target.result;
+                displayContents(output);
+            };//end onload()
+            reader.readAsText(filePath.files[0]);
+        }//end if html5 filelist support
+        else if(ActiveXObject && filePath) { //fallback to IE 6-8 support via ActiveX
+            try {
+                reader = new ActiveXObject("Scripting.FileSystemObject");
+                var file = reader.OpenTextFile(filePath, 1); //ActiveX File Object
+                output = file.ReadAll(); //text contents of file
+                file.Close(); //close file "input stream"
+                displayContents(output);
+            } catch (e) {
+                if (e.number == -2146827859) {
+                    alert('Unable to access local files due to browser security settings. ' + 
+                     'To overcome this, go to Tools->Internet Options->Security->Custom Level. ' + 
+                     'Find the setting for "Initialize and script ActiveX controls not marked as safe" and change it to "Enable" or "Prompt"'); 
+                }
+            }       
+        }
+        else { //this is where you could fallback to Java Applet, Flash or similar
+            return false;
+        }       
+        return true;
+    }   
+
+    /**
+     * display content using a basic HTML replacement
+     */
+    function displayContents(txt) {
+        var el = document.getElementById('main'); 
+        el.innerHTML = txt; //display output in DOM
+    } 
 </script>
 	</body>
 </html>
