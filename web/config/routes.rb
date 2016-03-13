@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   # Serve websocket cable requests in-process
   # mount ActionCable.server => '/cable'
 
-  root "benders#new"
+  root "users#index"
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
   resources :users
   resources :benders
   resources :drinks

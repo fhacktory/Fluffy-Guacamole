@@ -1,0 +1,10 @@
+<h1> Home Page </h1>
+
+		<h3> <%= link_to("Sign up", new_user_path) %> </h3>
+
+		<h2> Created Account </h2>
+
+		<% @users.each do |user| %>
+		<p><%= link_to(user.name, user_path(user)) %></p>
+		
+		<% end %>
